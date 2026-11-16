@@ -1,0 +1,35 @@
+
+import telebot
+import os
+
+# BOT MA'LUMOTLARI
+BOT_NAME = CHAT BOT"
+BOT_USERNAME = "@VERONAGENT_BOT"
+TOKEN = os.getenv("BOT_TOKEN")
+
+if not TOKEN:8667739504:AAFMVxaKQymVThCO4nS_4hlsynrG0QpARTI
+    raise ValueError("BOT_TOKEN topilmadi!")
+
+bot = telebot.TeleBot(TOKEN)
+
+@bot.message_handler(commands=['start'])
+def start(message):
+    user = message.from_user.first_name
+
+    bot.reply_to(
+        message,
+        f"Assalomu alaykum, {user}! 👋\n\n"
+        f"🤖 {BOT_NAME}\n"
+        f"Username: {BOT_USERNAME}\n\n"
+        "Botimizga xush kelibsiz! 😊"
+    )
+
+@bot.message_handler(func=lambda message: True)
+def reply(message):
+    bot.reply_to(
+        message,
+        "Xabaringiz qabul qilindi! 😊"
+    )
+
+print(f"{BOT_NAME} ishga tushdi!")
+bot.infinity_polling()
